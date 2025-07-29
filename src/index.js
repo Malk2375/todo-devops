@@ -1,17 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const taskRoutes = require('./routes/tasks');  // Import des routes pour les tâches
 
 const app = express();
-app.use(express.json());
+const port = 3000;
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connecté avec succès'))
-  .catch((err) => console.error('Erreur de connexion à MongoDB', err));
+app.use(express.json());  // Permet de lire le JSON dans les requêtes
 
-app.get('/', (req, res) => res.json({ message: 'Bonjouuuur :)' }));
+// Connexion à MongoDB avec l'URL d'environnement
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/todolist';  // Par défaut, localhost
 
-const port = process.env.PORT || 3000;
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connecté'))
+  .catch(err => console.error('Erreur de connexion MongoDB:', err));
+
+// Utilisation des routes pour les tâches
+app.use('/tasks', taskRoutes);
+
+// Lancer le serveur
 app.listen(port, () => {
-  console.log(`Application en écoute sur http://localhost:${port}`);
+  console.log(`Serveur en écoute sur http://localhost:${port}`);
 });

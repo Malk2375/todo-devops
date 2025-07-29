@@ -1,28 +1,25 @@
-version: '3'
+version: '3.8'
 
 services:
+  # Service pour l'application Node.js
   app:
     build: .
     ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - MONGO_URI=mongodb://mongo:27017/todo_db
+      - "3000:3000"  # Mappe le port 3000 de l'hôte vers celui du conteneur
     depends_on:
-      - mongo
-    networks:
-      - todo-network
-
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    ports:
-      - "27017:27017"
+      - mongo  # L'application dépend de MongoDB
     environment:
-      - MONGO_INITDB_DATABASE=todo_db
-    networks:
-      - todo-network
+      - MONGO_URI=mongodb://mongo:27017/todolist  # Connexion à MongoDB dans le conteneur
+    volumes:
+      - .:/app  # Montre le répertoire local dans le conteneur pour le développement
 
-networks:
-  todo-network:
-    driver: bridge
+  # Service pour MongoDB
+  mongo:
+    image: mongo:latest  # Utiliser l'image officielle de MongoDB
+    ports:
+      - "27017:27017"  # Expose le port 27017 pour MongoDB
+    volumes:
+      - mongodb_data:/data/db  # Persistance des données
+
+volumes:
+  mongodb_data:  # Volumes Docker pour persister les données de MongoDB
