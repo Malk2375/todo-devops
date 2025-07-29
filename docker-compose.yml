@@ -1,25 +1,24 @@
 version: '3.8'
 
 services:
-  # Service pour l'application Node.js
   app:
     build: .
     ports:
-      - "3000:3000"  # Mappe le port 3000 de l'hôte vers celui du conteneur
+      - "3000:3000"
     depends_on:
-      - mongo  # L'application dépend de MongoDB
+      - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017/todolist  # Connexion à MongoDB dans le conteneur
+      - MONGO_URI=mongodb://mongo:27017/todolist
     volumes:
-      - .:/app  # Montre le répertoire local dans le conteneur pour le développement
+      - .:/app
 
   # Service pour MongoDB
   mongo:
-    image: mongo:latest  # Utiliser l'image officielle de MongoDB
+    image: mongo:latest
     ports:
-      - "27017:27017"  # Expose le port 27017 pour MongoDB
+      - "27017:27017"
     volumes:
-      - mongodb_data:/data/db  # Persistance des données
+      - mongodb_data:/data/db
 
 volumes:
-  mongodb_data:  # Volumes Docker pour persister les données de MongoDB
+  mongodb_data:
