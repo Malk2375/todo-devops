@@ -320,3 +320,45 @@ The `Task` model has the following fields:
 * **updatedAt** (`Date`): The timestamp when the task was last updated. Default is the current date.
 
 ---
+
+## **Testing and Continuous Integration**
+
+### ** Running Tests Locally**
+
+This project uses **Jest** for unit and integration testing.
+
+To run the test suite:
+
+```bash
+npm install
+npm test
+```
+
+#### Notes:
+
+* Unit tests require a local **MongoDB instance** running at `mongodb://localhost:27017/todolist-test`.
+* Integration tests use an **in-memory MongoDB** via `mongodb-memory-server`, so they do not require a local database.
+
+---
+
+### ** GitHub Actions CI**
+
+Two GitHub Actions workflows are configured to run automatically on `push` and `pull_request` to the `master` branch:
+
+#### **1. Node CI Workflow**
+
+Located at: `.github/workflows/node-ci.yml`
+
+* Sets up Node.js environment
+* Starts a MongoDB service
+* Installs dependencies
+* Runs the full test suite with `npm test`
+
+This ensures that all tests pass before changes are merged.
+
+#### **2. Docker Build Workflow**
+
+Located at: `.github/workflows/docker-image.yml`
+
+* Builds the Docker image automatically using the latest `Dockerfile`
+* Tags the image with a timestamp
