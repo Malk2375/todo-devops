@@ -362,3 +362,33 @@ Located at: `.github/workflows/docker-image.yml`
 
 * Builds the Docker image automatically using the latest `Dockerfile`
 * Tags the image with a timestamp
+
+Parfait, voici une section claire et concise à ajouter à ton `README.md`, en anglais, pour expliquer le **deployment sur Render**.
+
+---
+
+## ** Deployment (Render)**
+
+This project is deployed using [Render](https://render.com), a cloud platform for hosting web services.
+
+### ** Steps to Deploy**
+
+1. Go to [https://dashboard.render.com](https://dashboard.render.com) and create a new **Web Service**.
+
+2. Connect your **GitHub repository** to Render.
+
+3. Choose the root of your project as the build path.
+
+4. Fill out the required settings
+
+5. Click **"Create Web Service"** to deploy.
+
+### ** Live URL**
+
+Once deployed, your API will be available at:
+
+```
+https://your-app-name.onrender.com
+```
+
+You can test the endpoints (e.g. `/tasks`).
