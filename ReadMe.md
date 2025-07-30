@@ -17,8 +17,8 @@ http://localhost:3000/tasks
 ### **1. Clone the Repository**
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/Malk2375/todo-devops.git
+cd todo-devops
 ```
 
 ### **2. Docker Setup**
