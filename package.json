@@ -8,11 +8,20 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "mongoose": "^8.16.5"
+  },
+  "devDependencies": {
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "jest": "^30.0.5",
+    "mongodb-memory-server": "^10.1.4",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4"
   }
 }
